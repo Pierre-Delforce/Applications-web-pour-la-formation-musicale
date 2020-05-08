@@ -1,0 +1,11 @@
+modifications à venir : 
+
+interface
+gestion des dièses/bémols
+
+ajouts à venir : 
+
+jouer les notes de l'accord 
+
+possibilité de les jouer en ascendant,descendant ou en harmonique
+
