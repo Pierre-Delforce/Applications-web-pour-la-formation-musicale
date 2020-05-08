@@ -6,6 +6,6 @@ Meilleure gestion des dièses/bémols
 ajouts à venir : 
 
 jouer les notes de l'accord 
-
+mode tablature
 possibilité de les jouer en ascendant,descendant ou en harmonique
 
