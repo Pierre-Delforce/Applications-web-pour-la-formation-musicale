@@ -2,7 +2,7 @@ function init(){
 
 affinotes();
 }
-	
+	var music = new Audio();	
 var notes = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 function affinotes(){
 
@@ -21,6 +21,8 @@ var accord = document.getElementById('accord');
 var valueaccord = accord.options[accord.selectedIndex].value;
 var noteAccords = choixAccord(valueRoot,valueaccord);
 affiAccord(valueRoot,valueaccord);
+
+
 console.log("ROOT : "+valueRoot);
 var i;
 
@@ -38,13 +40,17 @@ var i;
 }*/
 
 var listeNotes = "";
+music.pause();
 noteAccords.forEach(function(note){
 	
 	listeNotes+= note+" ";
 	console.log("NOTE ACCORD :"+note);
+	play(noteAccords);		
+
 });
-	
-	
+53
+
+
 	
 	listeNotes = "("+listeNotes+")/w";
 
@@ -63,8 +69,18 @@ system.addStave({
 }).addClef('treble');
 
 vf.draw();
-}
 
+
+}
+function play(noteAccords){
+	
+	noteAccords.forEach(function(note){
+	
+
+	loadSound(note.trim());
+
+	});
+}
 function choixAccord(root,valueaccord){
 	
 	var bemols = ["C4","Db4","D4","Eb4","E4","F4","Gb4","G4","Ab4","A4","Bb4","B4","C5","Db5","D5","Eb5","E5","F5","Gb5","G5","Ab5","A5","Bb5","B5"];
@@ -262,13 +278,13 @@ console.log("lang : "+toggleLanguage());
 		case "maj":
 			rAccord = "majeur";
 		break;
-		case "min":
+		case "m":
 			rAccord = "mineur";
 		break;
 		case "maj7":
 			rAccord = "majeur septième";
 		break;
-		case "min":
+		case "m7":
 			rAccord = "mineur septième";
 		break;		
 		case "5":
@@ -296,4 +312,28 @@ console.log("lang : "+toggleLanguage());
 	}
 	
 	titre.innerHTML = valueroot+valueaccord;
+}
+
+
+function loadSound(note){
+ {
+		note = note.replace("Do","C");		
+		note = note.replace("Ré","D");		
+		note = note.replace("Mi","E");		
+		note = note.replace("Fa","F");		
+		note = note.replace("Sol","G");		
+		note = note.replace("La","A");		
+		note = note.replace("Si","B");		
+		note = note.replace("Db","C#");		
+		note = note.replace("Eb","D#");		
+		note = note.replace("Gb","F#");		
+		note = note.replace("Ab","G#");
+		note = note.replace("Bb","A#");
+		note = note.replace("#","%23");		
+		
+    music = new Audio("../notes/"+note+".mp3");
+    music.play();
+}
+	
+	
 }
