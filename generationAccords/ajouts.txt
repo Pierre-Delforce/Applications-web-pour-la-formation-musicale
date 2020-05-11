@@ -1,11 +1,11 @@
 modifications à venir : 
 
-interface
-Meilleure gestion des dièses/bémols
+interface,mise en forme
 
 ajouts à venir : 
 
-jouer les notes de l'accord 
-mode tablature
-possibilité de les jouer en ascendant,descendant ou en harmonique
 
+possibilité de les jouer en ascendant,descendant ou en harmonique
+changer le volume
+changer l'instrument
+ajout du mode tablatures (très très compliqué)

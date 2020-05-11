@@ -1,28 +1,145 @@
-function init(){
-
-affinotes();
-}
 	var music = new Audio();	
 var notes = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
-function affinotes(){
+var selectAccRandom = ["maj","maj7","m","m7","aug","dim","7","5","sus2","sus4"]; //sélection random d'un accord
+var selectNoteRandom = notes; //sélection random d'un accord
+var fileName = location.href.split("/").slice(-1).toString();
+var extension = ".html";
+var noteAccords = "";
+var valueRoot;
+var valueaccord;	
+function init(){
+	$("#accordTableau td").click(function(){
+			var val = $(this).text();
+			val = val.replace("majeur septième","maj7");
+			val = val.replace("mineur septième","m7");
+			val = val.replace("majeur","maj");
+			val = val.replace("mineur","m");
+			val = val.replace("augmenté","aug");
+			val = val.replace("diminué","dim");
+			val = val.replace("power","5");
+			
+			if(val.includes("septième de dominante")) val = "7";
+		
+			
+			$(this).toggleClass("unselected");
 
+			
+			if($(this).hasClass("unselected")){
+				
+				
+	
+				var index = selectAccRandom.indexOf(val);
+
+					if(index!=-1){
+
+				   selectAccRandom.splice(index, 1);
+				   console.log(selectAccRandom);
+				  
+				}
+			
+			}else{
+				
+				selectAccRandom.push(val);
+				   console.log(selectAccRandom);
+				
+			}
+
+		
+		
+		});
+		
+			$("#fondamentaleTableau td").click(function(){
+			var val = $(this).text();
+			val = val.slice(0,val.search("/"));
+
+			
+			if(val.includes("septième de dominante")) val = "7";
+		
+			
+			$(this).toggleClass("unselected");
+
+			
+			if($(this).hasClass("unselected")){
+				
+				
+	
+				var index = selectNoteRandom.indexOf(val);
+
+					if(index!=-1){
+
+				   selectNoteRandom.splice(index, 1);
+				
+				  
+				}
+			
+			}else{
+				
+				selectNoteRandom.push(val);
+		
+				
+			}
+
+		
+		
+		});
+affinotes();
+}
+
+
+function affinotes(){
 
 var context = document.getElementById('boo');
 
 context.innerHTML = "";
+
+fileName = fileName.replace(extension,"");
+
+if(fileName == "recoAccord"){
+	
+
+/*	var cellAccord = document.getElementById("#cellAccord");
+	var cellRoot = document.getElementById("#cellRoot");*/
+	
+
+
+	valueaccord = selectAccRandom[Math.floor(Math.random() * selectAccRandom.length)];
+	console.log("VAL RAND : "+valueaccord);
+	valueRoot = selectNoteRandom[Math.floor(Math.random() * notes.length)];
+	console.log("NOTE RAND : "+valueRoot);
+
+	
+	
+}
+			
+
+
+
+
+
+
+if(fileName == "geneAccords"){
+
+	
+
+
+
+
 var root = document.getElementById('fondamentale');
 
-var valueRoot = root.options[root.selectedIndex].value;
+valueRoot = root.options[root.selectedIndex].value;
 rootIndex = notes.indexOf(valueRoot);
 
 
 var accord = document.getElementById('accord');
 
-var valueaccord = accord.options[accord.selectedIndex].value;
-var noteAccords = choixAccord(valueRoot,valueaccord);
+valueaccord = accord.options[accord.selectedIndex].value;
+
+}
 affiAccord(valueRoot,valueaccord);
+	console.log("VAL RAND : "+valueaccord);
+noteAccords = choixAccord(valueRoot,valueaccord);
 
-
+console.log("array de notes : "+noteAccords);
 console.log("ROOT : "+valueRoot);
 var i;
 
@@ -45,10 +162,10 @@ noteAccords.forEach(function(note){
 	
 	listeNotes+= note+" ";
 	console.log("NOTE ACCORD :"+note);
-	play(noteAccords);		
+
 
 });
-53
+
 
 
 	
@@ -59,7 +176,7 @@ console.log("LISTE :"+listeNotes);
 
 const VF = Vex.Flow;
 
-// Create an SVG renderer and attach it to the DIV element named "boo".
+//créer un rendu SVG
 var vf = new VF.Factory({renderer: {elementId: 'boo', width: "150", height: "120"}});
 var score = vf.EasyScore();
 var system = vf.System();
@@ -108,9 +225,10 @@ switch (valueaccord.includes("maj")) {
 
 }
 
-console.log(notesListe[1]);
+
 var intervalles;
 var notesAccord = [];
+console.log("VALEUR VANT INTERVALLES : "+valueaccord);
 switch(valueaccord){ //INTERVALLES ACCORDS EN DEMI-TONS
 
 
@@ -118,6 +236,7 @@ switch(valueaccord){ //INTERVALLES ACCORDS EN DEMI-TONS
 	
 		intervalles = [0,4,7];
 	break;
+	case "m":
 	case "min":
 
 		intervalles = [0,3,7];
@@ -143,6 +262,7 @@ switch(valueaccord){ //INTERVALLES ACCORDS EN DEMI-TONS
 		intervalles = [0,4,7,11];
 		
 	break;
+	case "m7":
 	case "min7":
 
 		intervalles = [0,3,7,10];
@@ -336,4 +456,16 @@ function loadSound(note){
 }
 	
 	
+}
+
+function playChord(){
+	
+	noteAccords.forEach(function(note){
+	
+
+	play(noteAccords);		
+
+});
+
+
 }

@@ -1,11 +1,34 @@
+body{
+	
+	display : inline;
+	
+}
+
 #container{
 
 	margin: auto;
 
-	left : 50%;
-	width : 60%;
+	width : 100%;
+display : inline-block;
 overflow : hidden;	
 	text-align: center;
+		margin-top : 10%;
+}
+
+#container2{
+
+	margin: auto;
+height : 500px;
+	width : 60%;
+display : inline-block;
+overflow : hidden;	
+	text-align: center;
+}
+
+#cellAccord{
+	
+	background-color: #ddddff;
+	
 }
 
 select {
@@ -14,6 +37,16 @@ select {
 	width : 100px;
 }
 
+#cellAccord.unselected {
+	
+	background-color: #ffffff;
+	
+}
+#cellAccord.unselected {
+	
+	background-color: #ffffff;
+	
+}
 button {
 	
 	height : 40px;
@@ -28,11 +61,47 @@ button {
 
 	display: block;
 }
+
+#containerOptionsTableaux {
+
+	height : 500px;
+
+	width : 20%;
+	
+	display : inline-block;
+
+
+
+}
+
+#accordTableau{
+	  margin: auto;
+	width: 100%;
+	float: left;
+		background-color: #eed;
+		
+}
+
+#fondamentaleTableau{
+	  margin: auto;
+	
+		
+	float: left;
+		margin-top: 0;
+		background-color: #eed;
+}
+td {
+	
+	border : 1px solid black;
+	padding : 10px;
+	
+}
 #boo{
-  transform: scale(2,2);
 
 	margin: auto;
-	margin-top : 10%;
+
+  transform: scale(2,2);
+  width : 120px;
 
 }
 
@@ -44,7 +113,7 @@ button {
 #nomAccord{
 	
 	font-size : 24px;
-	margin-top: 12%;
+	margin-top: 5%;
 	
 }
 #panelLang{
